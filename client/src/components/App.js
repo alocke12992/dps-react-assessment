@@ -12,6 +12,7 @@ import BeerView from './BeerView';
 import {Switch, Route} from 'react-router-dom';
 import {Segment} from 'semantic-ui-react';
 
+// TODO: Add fetch component so we only have to load once 
 class App extends Component {
   render() {
     return (
