@@ -1,13 +1,16 @@
 import React from 'react'
-import {getBeers} from '../actions/beers'
+// import {getBeers} from '../actions/beers'
+//Will go back when I refactor to include redux
 import {Grid, Card, Dimmer, Loader} from 'semantic-ui-react';
 import axios from 'axios';
+import styled from 'styled-components';
 
 class Beers extends React.Component {
   state = {beers: []}
 
 
   componentDidMount() {
+
     axios.get('/api/all_beers')
       .then(res => {
         this.setState({beers: res.data.entries})
@@ -23,10 +26,12 @@ class Beers extends React.Component {
             {beer.name}
           </Card.Header>
           <Card.Meta>
-            {beer.abv}
+            ABV: {beer.abv}
           </Card.Meta>
           <Card.Description>
-            {beer.description}
+            <Truncated>
+              {beer.description}
+            </Truncated>
           </Card.Description>
         </Card>
       )
@@ -41,6 +46,13 @@ class Beers extends React.Component {
     )
   }
 }
+
+const Truncated = styled.div`
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+`
 
 
 export default Beers
