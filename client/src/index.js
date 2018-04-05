@@ -2,15 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
+import {Provider} from 'react-redux';
 import store from './store';
 import 'semantic-ui-css/semantic.min.css';
-import { injectGlobal } from 'styled-components';
+import {injectGlobal} from 'styled-components';
 
 injectGlobal`
   html, body {
-    background-color: black;
+    background-color: lightblue;
     width: 100%;
     height: 100%;
   }

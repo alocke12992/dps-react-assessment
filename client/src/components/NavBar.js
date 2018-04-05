@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
-import { withRouter } from 'react-router'
+import React, {Component} from 'react'
+import {Menu} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
+import {withRouter} from 'react-router'
 
 class NavBar extends Component {
   activeItem = (navPath) => {
@@ -16,8 +16,8 @@ class NavBar extends Component {
             <Menu.Item name='home' active={this.activeItem('/')} />
           </Link>
           <Menu.Menu position='right'>
-            <Link to='/'>
-              <Menu.Item name='DPS React Assessment' />
+            <Link to='/dem_rules'>
+              <Menu.Item name='Dem Rules' />
             </Link>
           </Menu.Menu>
         </Menu>
