@@ -1,7 +1,8 @@
 import React from 'react'
 // import {getBeers} from '../actions/beers'
 //Will go back when I refactor to include redux
-import {Grid, Card, Divider, Image} from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
+import {Grid, Card, Segment, Header, Divider, Image} from 'semantic-ui-react';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -28,18 +29,18 @@ class Beers extends React.Component {
     return (
       beers.map(beer =>
         <Card key={beer.id}>
-          {beer.labels ? this.getLabel(beer) : null}
-          <Card.Header>
+          {beer.labels ? this.getLabel(beer) : <Image src={defaultImage} />}
+          <Card.Header style={{color: 'black'}}>
             {beer.name}
           </Card.Header>
           <Card.Meta>
             ABV: {beer.abv}
           </Card.Meta>
-          <Card.Description>
-            <Truncated>
-              {beer.description}
-            </Truncated>
-          </Card.Description>
+          <Card.Content extra>
+            <Link to={`/beers/${beer.name}`} beer={beer}>
+              View More
+            </Link>
+          </Card.Content>
         </Card>
       )
     )
@@ -47,12 +48,17 @@ class Beers extends React.Component {
 
   render() {
     return (
-      <Card.Group itemsPerRow={4}>
-        {this.showBeer()}
-      </Card.Group>
+      <Segment centerAligned inverted>
+        <Header>Beers</Header>
+        <Card.Group itemsPerRow={4}>
+          {this.showBeer()}
+        </Card.Group>
+      </Segment>
     )
   }
 }
+
+const defaultImage = 'http://pickledwig.com/wp-content/themes/directorypress/thumbs/na.gif'
 
 const Truncated = styled.div`
   width: 100px;

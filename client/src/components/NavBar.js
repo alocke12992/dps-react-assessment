@@ -10,10 +10,19 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div>
-        <Menu pointing>
+      <div style={{marginBottom: '50px'}}>
+        <Menu inverted pointing>
           <Link to='/'>
-            <Menu.Item name='home' active={this.activeItem('/')} />
+            <Menu.Item name='Home' active={this.activeItem('/')} />
+          </Link>
+          <Link to='/content'>
+            <Menu.Item name='All' active={this.activeItem('/content')} />
+          </Link>
+          <Link to='/beers'>
+            <Menu.Item name='Beer' active={this.activeItem('/beers')} />
+          </Link>
+          <Link to='/breweries'>
+            <Menu.Item name='Breweries' active={this.activeItem('/breweries')} />
           </Link>
           <Menu.Menu position='right'>
             <Link to='/dem_rules'>

@@ -1,13 +1,14 @@
 import React from 'react'
 // import {getBeers} from '../actions/beers'
 //Will go back when I refactor to include redux
-import {Card, Image} from 'semantic-ui-react';
+import {Card, Segment, Header, Image} from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
-import styled from 'styled-components';
 
 class Breweries extends React.Component {
   state = {breweries: []}
 
+  defaultImage
 
   componentDidMount() {
 
@@ -21,7 +22,7 @@ class Breweries extends React.Component {
 
   showImage = (brewery) => {
     return (
-      <Image src={brewery.images.medium} />
+      <Image size='large' src={brewery.images.large} />
     )
   }
 
@@ -32,20 +33,16 @@ class Breweries extends React.Component {
       breweries.map(brewery =>
         <Card
           key={brewery.id}
-          href={brewery.website}
         >
-          {brewery.images ? this.showImage(brewery) : null}
-          <Card.Header>
+          {brewery.images ? this.showImage(brewery) : <Image src={defaultImage} />}
+          <Card.Header style={{color: 'black'}}>
             {brewery.name}
           </Card.Header>
-          <Card.Meta>
-            {brewery.established ? `EST: ${brewery.established}` : null}
-          </Card.Meta>
-          <Card.Description>
-            <Truncated>
-              {brewery.description}
-            </Truncated>
-          </Card.Description>
+          <Card.Content extra>
+            <Link to={`/breweries/${brewery.name}`}>
+              View
+            </Link>
+          </Card.Content>
         </Card>
       )
     )
@@ -53,19 +50,15 @@ class Breweries extends React.Component {
 
   render() {
     return (
-      <Card.Group itemsPerRow={4}>
-        {this.showBrewery()}
-      </Card.Group>
+      <Segment inverted centerAligned>
+        <Header>Breweries</Header>
+        <Card.Group itemsPerRow={4}>
+          {this.showBrewery()}
+        </Card.Group>
+      </Segment>
     )
   }
 }
-
-const Truncated = styled.div`
-  width: 100px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; 
-`
-
+const defaultImage = 'http://pickledwig.com/wp-content/themes/directorypress/thumbs/na.gif'
 
 export default Breweries
