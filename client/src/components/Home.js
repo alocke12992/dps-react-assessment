@@ -6,7 +6,7 @@ const Home = () => (
   <Grid centered>
     <Grid.Column>
       <Header as='h1'>Welcome to the Beertopia</Header>
-      <Button><Link to='/beers'>Beer Me!</Link></Button>
+      <Button><Link to='/content'>Beer Me!</Link></Button>
     </Grid.Column>
   </Grid>
 )

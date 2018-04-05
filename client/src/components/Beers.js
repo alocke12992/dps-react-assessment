@@ -1,7 +1,7 @@
 import React from 'react'
 // import {getBeers} from '../actions/beers'
 //Will go back when I refactor to include redux
-import {Grid, Card, Dimmer, Loader} from 'semantic-ui-react';
+import {Grid, Card, Divider, Image} from 'semantic-ui-react';
 import axios from 'axios';
 import styled from 'styled-components';
 
@@ -17,11 +17,18 @@ class Beers extends React.Component {
       })
   }
 
+  getLabel = (beer) => {
+    return (
+      <Image src={beer.labels.large} />
+    )
+  }
+
   showBeer = () => {
     const {beers} = this.state
     return (
       beers.map(beer =>
         <Card key={beer.id}>
+          {beer.labels ? this.getLabel(beer) : null}
           <Card.Header>
             {beer.name}
           </Card.Header>
@@ -40,7 +47,7 @@ class Beers extends React.Component {
 
   render() {
     return (
-      <Card.Group itemsPerRow={5}>
+      <Card.Group itemsPerRow={4}>
         {this.showBeer()}
       </Card.Group>
     )
@@ -48,7 +55,7 @@ class Beers extends React.Component {
 }
 
 const Truncated = styled.div`
-  width: 250px;
+  width: 100px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; 
