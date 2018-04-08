@@ -4,11 +4,11 @@ import Breweries from './Breweries'
 import {Grid} from 'semantic-ui-react'
 
 const Content = () => (
-  <Grid columns={2} centered>
-    <Grid.Column width={7}>
+  <Grid centered>
+    <Grid.Column computer={7} mobile={14}>
       <Beers />
     </Grid.Column>
-    <Grid.Column width={7}>
+    <Grid.Column computer={7} mobile={14}>
       <Breweries />
     </Grid.Column>
   </Grid>

@@ -4,6 +4,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {setFlash} from '../actions/flash';
+import SearchBar from './SearchBar';
 import {
   Button,
   Card,
@@ -68,6 +69,14 @@ class Beers extends React.Component {
     )
   }
 
+  search = (term) => {
+    const {dispatch} = this.props;
+    axios.get(`/api/search_beers?query=${term}`)
+      .then(res => {
+        this.setState({beers: res.data.entries})
+      });
+  }
+
   displayBeers = () => {
     const {beers} = this.state;
     return beers.map(beer => {
@@ -100,6 +109,7 @@ class Beers extends React.Component {
       return (
         <Segment inverted >
           <Header as='h1' textAlign='center' inverted>Beers</Header>
+          <SearchBar onSearchTermChange={this.search} />
           <Container style={{height: '100vh', overflowY: 'scroll', overflowX: 'hidden'}}>
             <InfiniteScroll
               pageStart={page}

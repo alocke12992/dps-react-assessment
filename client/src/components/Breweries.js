@@ -4,6 +4,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {setFlash} from '../actions/flash';
+import SearchBar from './SearchBar';
 import {
   Button,
   Card,
@@ -68,6 +69,14 @@ class Breweries extends React.Component {
     )
   }
 
+  search = (term) => {
+    const {dispatch} = this.props;
+    axios.get(`/api/search_breweries?query=${term}`)
+      .then(res => {
+        this.setState({breweries: res.data.entries})
+      });
+  }
+
   displaybreweries = () => {
     const {breweries} = this.state;
     return breweries.map(brewery => {
@@ -76,7 +85,7 @@ class Breweries extends React.Component {
           <Card.Content>
             {brewery.images ? this.showImage(brewery) : <Image src={defaultImage} />}
             <Card.Header>{brewery.name}</Card.Header>
-            <Card.Meta> ABV: {brewery.abv}</Card.Meta>
+            <Card.Meta> Established: {brewery.established}</Card.Meta>
           </Card.Content>
           <Card.Content extra>
             <Link to={`/breweries/${brewery.name}`}>
@@ -99,9 +108,9 @@ class Breweries extends React.Component {
     } else {
       return (
         <Segment inverted >
-          <Header as='h1' textAlign='center' inverted>breweries</Header>
+          <Header as='h1' textAlign='center' inverted>Breweries</Header>
+          <SearchBar onSearchTermChange={this.search} />
           <Container style={{height: '100vh', overflowY: 'scroll', overflowX: 'hidden'}}>
-            {/* <SearchBar onSearchTermChange={this.breweriesearch} /> */}
             <InfiniteScroll
               pageStart={page}
               loadMore={this.loadMorebreweries}
