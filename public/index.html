@@ -1,96 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  <h1 id="devpoint-studios-react-assessment">DevPoint Studios - React Assessment</h1>
-<p>We welcome you and thank you for taking the time to do this coding assessment. Please read the guidelines before getting started.</p>
-<h2 id="assessment-guidelines-">Assessment Guidelines:</h2>
-<ul>
-<li>The purpose of this assessment is to help us evaluate your client side application development coding skills.</li>
-<li>We use <a href="https://react.semantic-ui.com/introduction">Semantic UI React</a> in our projects. The skeleton project that you will be working from has this library already included. We don&#39;t care what frontend library you use.</li>
-<li>You are allowed to use any non-human resource. Ex:<ul>
-<li><strong>Allowed:</strong> StackOverflow, Google, Old Code, Etc...</li>
-<li><strong>Not Allowed:</strong> Speaking with anyone that has coding knowledge or is in the Technology field.</li>
-<li>You must use the skeleton project and existing UI as the start for your code</li>
-</ul>
-</li>
-<li>Check out the API index at <a href="http://localhost:3001/rails/info">http://localhost:3001/rails/info</a>.</li>
-<li>Don&#39;t be overwhelmed, supposed to be more steps than you are likely to complete in your given time frame. Try to do them in order, but you can skip steps if you get stuck. If you skip a feature, put in the notes as to why you skipped it.</li>
-<li>Put the time that you start and end on the first line of notes.md. Also, add any grading advice, disclaimers, brags, feedback, or anomalies you encounter along your way.</li>
-<li>Please try to commit often and add messages to your commits so we can more easily review your work.</li>
-<li>We added more steps than we expect you to finish. Don&#39;t be overwhelmed and get as far as you can in the time you have. We will take into account the time amount of time you took, the amount of experience you have in ReactJS, etc.</li>
-<li><strong>The Webpack server and API server for the project can be run via <code>bundle exec foreman start</code></strong>.</li>
-<li>IMPORTANT: You will need to create a .env file in the root directory of the project. The easiest way to do this is to run this command in your terminal: <code>cp .env.example .env</code></li>
-<li>IMPORTANT: You will need to obtain an API key for the BreweryDB API from us at DevPoint Labs. Please reach out to us and let us know when you are ready to start the project.</li>
-<li>HINT: Postman is an awesome tool to start making API Requests with to see what data comes back and how you&#39;ll want to manage that data in your React Components.</li>
-</ul>
-<h2 id="api-endpoints">Api Endpoints</h2>
-<h3 id="beers">Beers</h3>
-<ol>
-<li><code>/api/all_beers</code> - Returns the first 50 Beers from the BreweryDB API</li>
-<li><code>/api/beer/:name</code> - Returns info about the Beer if found by name</li>
-<li><code>/api/beer/random</code> - Returns info about a random Beer</li>
-</ol>
-<h3 id="breweries">Breweries</h3>
-<ol>
-<li><code>/api/all_breweries</code> - Returns the first 50 Breweries from the BreweryDB API</li>
-<li><code>/api/brewery/:name</code> - Returns info about the Brewery if found by name</li>
-</ol>
-<h3 id="search">Search</h3>
-<ol>
-<li><code>/api/search_all?query=&#39;&#39;</code> - Returns all info from the BreweryDB API matching search query</li>
-<li><code>/api/search_beers?query=&#39;&#39;</code> - Returns all info about Beers from the BreweryDB API matching search query</li>
-<li><code>/api/search_breweries?query=&#39;&#39;</code> - Returns all info about Breweries from the BreweryDB API matching search query</li>
-</ol>
-<h3 id="glassware">Glassware</h3>
-<ol>
-<li><code>/api/all_glassware</code> - Returns all Glassware in the BreweryDB API</li>
-</ol>
-<h3 id="locations">Locations</h3>
-<ol>
-<li><code>/api/all_locations</code> - Returns the first 50 Locations from the BreweryDB API</li>
-<li><code>/api/locations/:city</code> - Returns the first 50 Locations in the matched city from the BreweryDB API</li>
-</ol>
-<h2 id="assessment-steps-">Assessment Steps:</h2>
-<h3 id="part-i-basic-data-retrieval">PART I - Basic Data Retrieval</h3>
-<ol>
-<li>Fork this repo so you have a clone of the project in your own github</li>
-<li>Create a new Beers Component - <code>client/src/components</code></li>
-<li>Add a new client side route - <code>/beers</code> that renders our new Beers Component. Our routes are defined in <code>client/src/components/App.js</code>.</li>
-<li>Use <code>axios</code>, <code>fetch</code> or any other HTTP Request library to GET the first 50 Beers from <code>/api/all_beers</code>. The way you choose to display / style this is up to you.</li>
-<li>Use <code>axios</code>, <code>fetch</code> or any other HTTP Request library to GET the first 50 Breweries from <code>/api/all_breweries</code>. The way you choose to display / style this is up to you. You can create a new route and have it on a different page or you could use your Beers Component and a Grid system to show all beers and breweries side by side.</li>
-<li>Make sure to use enough attributes to make the site interesting. Most Beers and Breweries have an image or multiple images.</li>
-</ol>
-<h3 id="part-ii-controlled-data-fetching-this-is-an-important-step-please-don-t-skip-it-">PART II - Controlled Data Fetching (This is an important step, please don&#39;t skip it)</h3>
-<ol>
-<li>Paginate the list of Beers and Breweries, loading no more than 10 at a time. Do server-side pagination (NOT client-side): <a href="https://github.com/mislav/will_paginate">Will Paginate Gem</a>. This is already setup on the server all you have to do is make sure your client side API requests are passing the correct query strings for the rails server to do the pagination<ul>
-<li>HINT: you can pass pagination details in the query string. If you pass the <code>page</code> and <code>per_page</code> query string parameters the server will paginate results for you. EXAMPLE: <code>api/all_beers?page=20&amp;per_page=5</code></li>
-</ul>
-</li>
-<li>Have the ability to go to other pages via pagination links or Infinite Scroll<ul>
-<li>Example Libraries<ol>
-<li><a href="https://github.com/CassetteRocks/react-infinite-scroller">React Infinite Scroller</a></li>
-<li><a href="https://github.com/AdeleD/react-paginate">React Paginate</a></li>
-</ol>
-</li>
-</ul>
-</li>
-</ol>
-<h3 id="part-iii-looking-up-specific-beers-breweries">PART III - Looking Up Specific Beers / Breweries</h3>
-<ol>
-<li>Have the ability to click on a Beer / Brewery and show all the information about it. You will use an API Endpoint for this. The way you choose to display / style this is up to you.</li>
-</ol>
-<h3 id="bonus">BONUS</h3>
-<ol>
-<li>Use any / all of the other API Endpoints to demonstrate your knowledge of React / Redux</li>
-<li>Style the project using: Styles in your components, a Stylesheet, or using the Styled Components Library <a href="https://github.com/styled-components/styled-components">Styled Components</a></li>
-<li>Implement live search on all of your components that show lists of items like Beers, Breweries, Etc</li>
-<li>Make your entire site responsive so it looks good on: a large screen, a tablet, and a phone</li>
-<li>React Native App</li>
-</ol>
+  <h1 id="devpoint-studios-react-assessment">Karin's Beer - React Assessment</h1>
+  <p>Welcome! Please read the guidelines before
+    getting started.</p>
+  <h2 id="assessment-guidelines-">Assessment Guidelines:</h2>
+  <ul>
+    <li>The purpose of this assessment is to help us evaluate your client side application development coding skills.</li>
+    <li>We use <a href="https://react.semantic-ui.com/introduction">Semantic UI React</a> in our projects. The skeleton
+      project that you will be working from has this library already included. We don&#39;t care what frontend library
+      you use.</li>
+    <li>You are allowed to use any non-human resource. Ex:<ul>
+        <li><strong>Allowed:</strong> StackOverflow, Google, Old Code, Etc...</li>
+        <li><strong>Not Allowed:</strong> Speaking with anyone that has coding knowledge or is in the Technology field.
+        </li>
+        <li>You must use the skeleton project and existing UI as the start for your code</li>
+      </ul>
+    </li>
+    <li>Check out the API index at <a href="http://localhost:3001/rails/info">http://localhost:3001/rails/info</a>.</li>
+    <li>Don&#39;t be overwhelmed, supposed to be more steps than you are likely to complete in your given time frame.
+      Try to do them in order, but you can skip steps if you get stuck. If you skip a feature, put in the notes as to
+      why you skipped it.</li>
+    <li>Put the time that you start and end on the first line of notes.md. Also, add any grading advice, disclaimers,
+      brags, feedback, or anomalies you encounter along your way.</li>
+    <li>Please try to commit often and add messages to your commits so we can more easily review your work.</li>
+    <li>We added more steps than we expect you to finish. Don&#39;t be overwhelmed and get as far as you can in the time
+      you have. We will take into account the time amount of time you took, the amount of experience you have in
+      ReactJS, etc.</li>
+    <li><strong>The Webpack server and API server for the project can be run via
+        <code>bundle exec foreman start</code></strong>.</li>
+    <li>IMPORTANT: You will need to create a .env file in the root directory of the project. The easiest way to do this
+      is to run this command in your terminal: <code>cp .env.example .env</code></li>
+    <li>IMPORTANT: You will need to obtain an API key for the BreweryDB API from us at DevPoint Labs. Please reach out
+      to us and let us know when you are ready to start the project.</li>
+    <li>HINT: Postman is an awesome tool to start making API Requests with to see what data comes back and how
+      you&#39;ll want to manage that data in your React Components.</li>
+  </ul>
+  <h2 id="api-endpoints">Api Endpoints</h2>
+  <h3 id="beers">Beers</h3>
+  <ol>
+    <li><code>/api/all_beers</code> - Returns the first 50 Beers from the BreweryDB API</li>
+    <li><code>/api/beer/:name</code> - Returns info about the Beer if found by name</li>
+    <li><code>/api/beer/random</code> - Returns info about a random Beer</li>
+  </ol>
+  <h3 id="breweries">Breweries</h3>
+  <ol>
+    <li><code>/api/all_breweries</code> - Returns the first 50 Breweries from the BreweryDB API</li>
+    <li><code>/api/brewery/:name</code> - Returns info about the Brewery if found by name</li>
+  </ol>
+  <h3 id="search">Search</h3>
+  <ol>
+    <li><code>/api/search_all?query=&#39;&#39;</code> - Returns all info from the BreweryDB API matching search query
+    </li>
+    <li><code>/api/search_beers?query=&#39;&#39;</code> - Returns all info about Beers from the BreweryDB API matching
+      search query</li>
+    <li><code>/api/search_breweries?query=&#39;&#39;</code> - Returns all info about Breweries from the BreweryDB API
+      matching search query</li>
+  </ol>
+  <h3 id="glassware">Glassware</h3>
+  <ol>
+    <li><code>/api/all_glassware</code> - Returns all Glassware in the BreweryDB API</li>
+  </ol>
+  <h3 id="locations">Locations</h3>
+  <ol>
+    <li><code>/api/all_locations</code> - Returns the first 50 Locations from the BreweryDB API</li>
+    <li><code>/api/locations/:city</code> - Returns the first 50 Locations in the matched city from the BreweryDB API
+    </li>
+  </ol>
+  <h2 id="assessment-steps-">Assessment Steps:</h2>
+  <h3 id="part-i-basic-data-retrieval">PART I - Basic Data Retrieval</h3>
+  <ol>
+    <li>Fork this repo so you have a clone of the project in your own github</li>
+    <li>Create a new Beers Component - <code>client/src/components</code></li>
+    <li>Add a new client side route - <code>/beers</code> that renders our new Beers Component. Our routes are defined
+      in <code>client/src/components/App.js</code>.</li>
+    <li>Use <code>axios</code>, <code>fetch</code> or any other HTTP Request library to GET the first 50 Beers from
+      <code>/api/all_beers</code>. The way you choose to display / style this is up to you.</li>
+    <li>Use <code>axios</code>, <code>fetch</code> or any other HTTP Request library to GET the first 50 Breweries from
+      <code>/api/all_breweries</code>. The way you choose to display / style this is up to you. You can create a new
+      route and have it on a different page or you could use your Beers Component and a Grid system to show all beers
+      and breweries side by side.</li>
+    <li>Make sure to use enough attributes to make the site interesting. Most Beers and Breweries have an image or
+      multiple images.</li>
+  </ol>
+  <h3 id="part-ii-controlled-data-fetching-this-is-an-important-step-please-don-t-skip-it-">PART II - Controlled Data
+    Fetching (This is an important step, please don&#39;t skip it)</h3>
+  <ol>
+    <li>Paginate the list of Beers and Breweries, loading no more than 10 at a time. Do server-side pagination (NOT
+      client-side): <a href="https://github.com/mislav/will_paginate">Will Paginate Gem</a>. This is already setup on
+      the server all you have to do is make sure your client side API requests are passing the correct query strings for
+      the rails server to do the pagination<ul>
+        <li>HINT: you can pass pagination details in the query string. If you pass the <code>page</code> and
+          <code>per_page</code> query string parameters the server will paginate results for you. EXAMPLE:
+          <code>api/all_beers?page=20&amp;per_page=5</code></li>
+      </ul>
+    </li>
+    <li>Have the ability to go to other pages via pagination links or Infinite Scroll<ul>
+        <li>Example Libraries<ol>
+            <li><a href="https://github.com/CassetteRocks/react-infinite-scroller">React Infinite Scroller</a></li>
+            <li><a href="https://github.com/AdeleD/react-paginate">React Paginate</a></li>
+          </ol>
+        </li>
+      </ul>
+    </li>
+  </ol>
+  <h3 id="part-iii-looking-up-specific-beers-breweries">PART III - Looking Up Specific Beers / Breweries</h3>
+  <ol>
+    <li>Have the ability to click on a Beer / Brewery and show all the information about it. You will use an API
+      Endpoint for this. The way you choose to display / style this is up to you.</li>
+  </ol>
+  <h3 id="bonus">BONUS</h3>
+  <ol>
+    <li>Use any / all of the other API Endpoints to demonstrate your knowledge of React / Redux</li>
+    <li>Style the project using: Styles in your components, a Stylesheet, or using the Styled Components Library <a
+        href="https://github.com/styled-components/styled-components">Styled Components</a></li>
+    <li>Implement live search on all of your components that show lists of items like Beers, Breweries, Etc</li>
+    <li>Make your entire site responsive so it looks good on: a large screen, a tablet, and a phone</li>
+    <li>React Native App</li>
+  </ol>
 </body>
+
 </html>

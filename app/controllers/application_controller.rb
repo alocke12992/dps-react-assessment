@@ -3,6 +3,7 @@ class ApplicationController < ActionController::API
 
   protected
   def send_response(api_response)
+    response.headers['Access-Control-Allow-Origin'] = '*'
     if api_response.is_a?(BreweryDB::PaginatedCollection) || api_response.is_a?(BreweryDB::Collection)
       if(api_response.count > 0)
         page = params[:page] ? params[:page].to_i : 1
@@ -18,6 +19,7 @@ class ApplicationController < ActionController::API
                        entries: paged_response
                      }
       else
+
         render json: { message: 'No Results' }, status: :not_found
       end
     elsif api_response.is_a?(Hash)
@@ -37,6 +39,7 @@ class ApplicationController < ActionController::API
   end
 
   def check_auth
+    response.headers['Access-Control-Allow-Origin'] = '*'
     if !params[:key]
       render json: {
         "error": "Missing required key"
