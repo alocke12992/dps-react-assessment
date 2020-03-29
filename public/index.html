@@ -12,6 +12,42 @@
   <p>Welcome! Thank you for taking the time to do this coding assessment. Please read the guidelines before getting
     started.</p>
   <p>Assessment starter can be found here: <a href="https://github.com/alocke12992/karins_beer" target="_blank" rel="noopener noreferrer">Karin's Beer Assessment Github</a></p>
+  <h2 id="api-">API:</h2>
+  <h3 id="authentication">Authentication</h3>
+  <p>All endpoints require an <code>API_KEY</code> to access. Talk to Andrew to get this key. Once you have the key, you
+    will need to include using <code>key</code> as a query parameter bypass the authentication.</p>
+  <p><em>Example</em>
+    <code>http://www.karinsbeer.com/api/[END_POINT]/?key=[API_KEY]</code></p>
+  <h3 id="beers">Beers</h3>
+  <ol>
+    <li><code>/api/all_beers</code> - Returns the first 50 Beers from the BreweryDB API</li>
+    <li><code>/api/beer/:name</code> - Returns info about the Beer if found by name</li>
+    <li><code>/api/beer/random</code> - Returns info about a random Beer</li>
+  </ol>
+  <h3 id="breweries">Breweries</h3>
+  <ol>
+    <li><code>/api/all_breweries</code> - Returns the first 50 Breweries from the BreweryDB API</li>
+    <li><code>/api/brewery/:name</code> - Returns info about the Brewery if found by name</li>
+  </ol>
+  <h3 id="search">Search</h3>
+  <ol>
+    <li><code>/api/search_all?query=&#39;&#39;</code> - Returns all info from the BreweryDB API matching search query
+    </li>
+    <li><code>/api/search_beers?query=&#39;&#39;</code> - Returns all info about Beers from the BreweryDB API matching
+      search query</li>
+    <li><code>/api/search_breweries?query=&#39;&#39;</code> - Returns all info about Breweries from the BreweryDB API
+      matching search query</li>
+  </ol>
+  <h3 id="glassware">Glassware</h3>
+  <ol>
+    <li><code>/api/all_glassware</code> - Returns all Glassware in the BreweryDB API</li>
+  </ol>
+  <h3 id="locations">Locations</h3>
+  <ol>
+    <li><code>/api/all_locations</code> - Returns the first 50 Locations from the BreweryDB API</li>
+    <li><code>/api/locations/:city</code> - Returns the first 50 Locations in the matched city from the BreweryDB API
+    </li>
+  </ol>
   <h2 id="assessment-guidelines-">Assessment Guidelines:</h2>
   <ul>
     <li>The purpose of this assessment is to help us evaluate your client side application development coding skills.
@@ -124,43 +160,6 @@
     <li>Make your entire site responsive so it looks good on: a large screen, a tablet, and a phone</li>
     <li>Port to a React Native App</li>
   </ol>
-  <h2 id="api-">API:</h2>
-  <h3 id="authentication">Authentication</h3>
-  <p>All endpoints require an <code>API_KEY</code> to access. Talk to Andrew to get this key. Once you have the key, you
-    will need to include using <code>key</code> as a query parameter bypass the authentication.</p>
-  <p><em>Example</em>
-    <code>http://www.karinsbeer.com/api/[END_POINT]/?key=[API_KEY]</code></p>
-  <h3 id="beers">Beers</h3>
-  <ol>
-    <li><code>/api/all_beers</code> - Returns the first 50 Beers from the BreweryDB API</li>
-    <li><code>/api/beer/:name</code> - Returns info about the Beer if found by name</li>
-    <li><code>/api/beer/random</code> - Returns info about a random Beer</li>
-  </ol>
-  <h3 id="breweries">Breweries</h3>
-  <ol>
-    <li><code>/api/all_breweries</code> - Returns the first 50 Breweries from the BreweryDB API</li>
-    <li><code>/api/brewery/:name</code> - Returns info about the Brewery if found by name</li>
-  </ol>
-  <h3 id="search">Search</h3>
-  <ol>
-    <li><code>/api/search_all?query=&#39;&#39;</code> - Returns all info from the BreweryDB API matching search query
-    </li>
-    <li><code>/api/search_beers?query=&#39;&#39;</code> - Returns all info about Beers from the BreweryDB API matching
-      search query</li>
-    <li><code>/api/search_breweries?query=&#39;&#39;</code> - Returns all info about Breweries from the BreweryDB API
-      matching search query</li>
-  </ol>
-  <h3 id="glassware">Glassware</h3>
-  <ol>
-    <li><code>/api/all_glassware</code> - Returns all Glassware in the BreweryDB API</li>
-  </ol>
-  <h3 id="locations">Locations</h3>
-  <ol>
-    <li><code>/api/all_locations</code> - Returns the first 50 Locations from the BreweryDB API</li>
-    <li><code>/api/locations/:city</code> - Returns the first 50 Locations in the matched city from the BreweryDB API
-    </li>
-  </ol>
-
 </body>
 
 </html>
