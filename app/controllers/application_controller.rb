@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  before_action :set_page
+  before_action :check_auth, :set_page
 
   protected
   def send_response(api_response)
@@ -34,5 +34,18 @@ class ApplicationController < ActionController::API
 
   def set_page
     @page = params[:page] || 1
+  end
+
+  def check_auth
+    if !params[:key]
+      render json: {
+        "error": "Missing required key"
+      }
+      return
+    end
+    if params[:key] != ENV['KARINS_KEY']
+      render json: {"error": "Incorrect key"}
+      return
+    end
   end
 end
